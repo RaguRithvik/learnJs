@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        function doVowels(arg) {
+            var string = str.toString();
+            for (var i = 0; i <= string.length - 1; i++) {
+                if (string.charAt(i) !== "a" || string.charAt(i) !== "e" || string.charAt(i) !== "i" || string.charAt(i) !== "o" || string.charAt(i) !== "u") {
+                    return false
+                }
+            }
+            return true
+        }
+    </script>
+</head>
+
+<body>
+    <input type="text" onkeydown="return doVowels(this.value)">
+    <input type="text" id="my_text" size="30" />
+    <script type="text/javascript">
+        var input = document.getElementById('my_text');
+        input.onkeydown = function(e) {
+            var k = e.which;
+            if(k == 65 || k == 69 || k == 73 || k == 79  || k==85){}
+            else{e.preventDefault();return false;}
+        };
+    </script>
+</body>
+
+</html>

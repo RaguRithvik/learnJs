@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script>
+    var menus = ["Home", "About", "Contact", "Services"];
+
+    function showList(arr) {
+      var ui = "<ul>";
+      for (var i = 0; i < arr.length; i++) {
+        ui += "<li>" + arr[i] + " <input type='button' value='Edit' onclick=doEdit('" + [i] +
+          "','" + arr[i] +"')> <input type='button' value='Delete' onclick=doDelete('" + [i] +
+          "')></li>";
+      }
+      ui += "</ul>";
+      document.getElementById("list").innerHTML = ui;
+      doSwitch()
+      changeinput()
+    }
+    // 01: push,pop,shift, unshift
+    function doSwitch(arg) {
+      var inputValue = document.getElementById("test").value
+      switch (arg) {
+        case "push":
+          if (inputValue !== "") {
+            menus.push(inputValue)
+            showList(menus)
+            document.getElementById("test").value = "";
+            changeinput()
+          } else {
+            alert("Please Enter Valid Data")
+          }
+          break;
+        case "pop":
+          menus.pop()
+          showList(menus)
+          break;
+        case "shift":
+          menus.shift()
+          showList(menus)
+          break;
+        case "unshift":
+          if (inputValue !== "") {
+            menus.unshift(inputValue)
+            showList(menus)
+            document.getElementById("test").value = "";
+            changeinput()
+          } else {
+            alert("Please Enter Valid Data")
+          }
+          break;
+        default:
+          break;
+      }
+    }
+    // 02: Pop and shift Button disabled
+    function changeinput() {
+      if (document.getElementById("test").value.length > 0) {
+        document.getElementById("pop").disabled = true;
+        document.getElementById("shift").disabled = true;
+      } else {
+        document.getElementById("pop").disabled = false;
+        document.getElementById("shift").disabled = false;
+      }
+    }
+    // 03: store edit value
+    var storeValue
+    // 04: edit function
+    function doEdit(id, data) {
+      document.getElementById("editform").style.display = "block";
+      document.getElementById("editdata").value = data
+      storeValue = id
+    }
+    // 05: delete function
+    function doDelete(id) {
+      if (confirm("Are sure want to delete this?")) {
+        menus.splice(id, 1)
+        alert('deleted');
+        showList(menus)
+      } else {
+        alert('cancelled');
+      }
+    }
+    // 06: search function
+    function doSearch(searchTxt) {
+      var tempArr = [];
+      for (var i = 0; i < menus.length; i++) {
+        if (menus[i].toLowerCase().includes(searchTxt.toLowerCase())) {
+          tempArr.push(menus[i]);
+        }
+      }
+      showList(tempArr);
+    }
+    // 07: Update function
+    const doUpdate = () => {
+      var indexPos = storeValue;
+      var editdata = document.getElementById("editdata").value
+      if (editdata !== "") {
+        menus.splice(indexPos, 1, editdata)
+        showList(menus);
+        document.getElementById("editdata").value = "";
+        document.getElementById("editform").style.display = "none";
+      } else {
+        alert("Please Enter Valid Data")
+      }
+    }
+  </script>
+</head>
+
+<body onload="showList(menus)">
+  Menus: <input type="text" id="test" onkeyup="changeinput()"> <br><br>
+
+  <button onclick="doSwitch('push')">Push</button>&nbsp;
+  <button id="pop" onclick="doSwitch('pop')">Pop</button>&nbsp;
+  <button id="shift" onclick="doSwitch('shift')">Shift</button>&nbsp;
+  <button onclick="doSwitch('unshift')">Unshift</button>&nbsp; <br><br>
+  Search: <input type="text" onkeyup="doSearch(this.value)"> <br><br>
+
+  <div id="list"></div>
+
+  <div id="editform" style="display: none;">
+    Edit: <input type="text" id="editdata"> <br><br>
+    <button onclick="doUpdate()">Update</button>
+  </div>
+</body>
+
+</html>

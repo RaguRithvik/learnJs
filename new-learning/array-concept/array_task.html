@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var username = ["ragu", "rithvik", "ravi", "ram"]
+        var username1 = ["hi", "hello", "how are you", "ragu"]
+        var data = ["ragu", 89, "ravi", "ram", 100, "rithvik", 67]
+        var marks = [89, 100, 7, 90, 34, 99, 87, 98, 98, 34, 34, 7];
+        // 01. search for loop username 
+        const doForLoopSearch = (value) => {
+            var changeText = document.getElementById("foorloop")
+            for (i = 0; i < username.length; i++) {
+                if (value == "") {
+                    changeText.style.display = "none"
+                } else if (username[i].toLocaleLowerCase() == value.toLocaleLowerCase()) {
+                    changeText.innerHTML = "Username already taken"
+                    changeText.style.color = "red"
+                    changeText.style.display = "block"
+                    break;
+                } else {
+                    changeText.innerHTML = "Username available"
+                    changeText.style.color = "green"
+                    changeText.style.display = "block"
+                }
+
+            }
+        }
+        // 02. search withoutfor loop username 
+        const usernamecheck = (value) => {
+            var changeText = document.getElementById("printusernamevalue")
+            if (value == "") {
+                changeText.style.display = "none"
+            } else if (username.indexOf(value.toLowerCase()) !== -1) {
+                changeText.innerHTML = "Username already taken"
+                changeText.style.color = "red"
+                changeText.style.display = "block"
+            } else if (username.indexOf(value.toLowerCase()) <= 0) {
+                changeText.innerHTML = "Username available"
+                changeText.style.color = "green"
+                changeText.style.display = "block"
+            }
+        }
+        // 03. Separate number string
+        const doSparate = () => {
+            var string = [];
+            var number = [];
+            for (i = 0; i < data.length; i++) {
+                if (typeof data[i] == "number") {
+                    number.push(data[i])
+                } else {
+                    string.push(data[i])
+                }
+            }
+            document.getElementById('srting').innerHTML = string.map(value => `${value}`).join(', ')
+            document.getElementById('number').innerHTML = number.map(value => `${value}`).join(', ')
+        }
+        // 04. Mirror
+        const doMirror = (value) => {
+            var mirrorValue = value.split();
+            var setMirrorValue = document.getElementById("mirror")
+            var finalresult = ""
+            var cachresult = ""
+            for (i = 0; i < mirrorValue.length; i++) {
+                for (j = 0; j < mirrorValue[i].length; j++) {
+                    cachresult = mirrorValue[i][j] + cachresult
+                }
+                finalresult = cachresult
+                cachresult = ""
+            }
+            setMirrorValue.innerHTML = finalresult
+        }
+        //05. Longest value 
+        const doLongestValue = () => {
+            var doLongestValue = document.getElementById("doLongestValue")
+            var getNewValue = username1.sort((a, b) => {
+                return b.length - a.length
+            })[0]
+            doLongestValue.innerHTML = getNewValue
+
+            // var pushValue = []
+            // for(i= 0;i<username1.length;i++){
+            //     for(j=1;j<username1.length;j++){
+            //         if(username1[i]<username1[j]){
+            //             pushValue.push(username1[i])
+            //         }
+            //     }
+            // }
+            // console.log(pushValue[0])
+        }
+        // 06 doAddGraceMark
+        const doAddGraceMark = () => {
+            const addMark = document.getElementById("getMarks").value
+            var mapValue = marks.map((value) => {
+                if (Number(value) < 100) {
+                    var totalMark = value + Number(addMark)
+                    return totalMark < 100 ? totalMark : 100
+                } else {
+                    return value = 100
+                }
+            })
+            document.getElementById('gracemark').innerHTML = mapValue.map(value => `${value}`).join(', ')
+        }
+        // 07 showPassMark
+        const showPassMark = () => {
+            if (document.getElementById('checkbox').checked) {
+                document.getElementById('pass').innerHTML = marks.filter((value) => {
+                    if (Number(value) > 35) {
+                        return value
+                    }
+                }).join(', ')
+            } else {
+                document.getElementById('pass').innerHTML = marks.map((value) => {
+                    return value
+                }).join(', ')
+            }
+        }
+        // 08 doRemoveDuplicate
+        const doRemoveDuplicate = () => {
+            const duplicateMark = []
+            marks.forEach((value) => {
+                if (duplicateMark.indexOf(value) < 0) {
+                    duplicateMark.push(value)
+                }
+            })
+            document.getElementById('duplicateMark').innerHTML = duplicateMark.map((value) => {
+                return value
+            }).join(', ')
+        }
+    </script>
+</head>
+
+<body>
+    <h3>1.Username check availability with case sensitive array ["ragu", "rithvik", "ravi", "ram"]</h3>
+    <input type="text" id="usernamecheck" onkeyup="doForLoopSearch(this.value)">
+    <p id="foorloop"></p>
+
+    <h3>2.Username check availability with case sensitive without for loop array ["ragu", "rithvik", "ravi", "ram"]</h3>
+    <input type="text" id="usernamecheck" onkeyup="usernamecheck(this.value)">
+    <p id="printusernamevalue"></p>
+
+    <h3>3.Separate number and string : var data ["ragu", 89, "ravi", "ram", 100, "rithvik", 67]</h3>
+    String: <span id="srting"></span> <br>
+    Number: <span id="number"></span> <br>
+    <button onclick="doSparate()">Click Here</button><br>
+
+    <h3>4. Call a function mirror() with some string and it should give you a mirror effect.
+        Ex: function mirror()</h3>
+    <p id="mirror"></p>
+    <input type="text" onkeyup="doMirror(this.value)">
+
+    <h3>5.Find longest word from the Array. ["hi", "hello", "how are you", "ragu"]</h3>
+    <p id="doLongestValue"></p>
+    <button onclick="doLongestValue()">find</button>
+
+    <h3>6.Add grace marks [89, 100, 7, 90, 34, 99, 87, 98, 98, 34,34, 7]</h3>
+    <p id="gracemark"></p>
+    <input type="text" id="getMarks"> <button onclick="doAddGraceMark()">Add</button>
+
+    <h3>7.Filter only passed subjects - checkbox </h3>
+    <p id="pass">[89, 100, 7, 90, 34, 99, 87, 98, 98, 34,34, 7]</p>
+    <input type="checkbox" onchange="showPassMark()" id="checkbox"> show only pass marks - <br>
+    <h3>8. Avoid duplicate number</h3>
+    <p id="duplicateMark">[89, 100, 7, 90, 34, 99, 87, 98, 98, 34,34, 7]</p>
+    <button onclick="doRemoveDuplicate()">remove duplicate number</button>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+         var str = "hi gopi, h r u Gopi?";
+
+         var str1 = str.replace(/gopi/i, "bala");
+
+        // alert(str1);
+
+        // alert(str);
+
+       // alert(str.startsWith("Go", 3));
+
+       //alert(str.endsWith("gopi?"));
+
+       /*if(str.includes("goa")) {
+        alert("String exists");
+       } else {
+        alert("String not exists");
+       }*/ 
+
+       var result = str.match(/go/gi);
+
+      // alert(result)
+
+     // console.log(result);
+
+      var useremail = "gopigmail.com";
+
+      var isValidEmail = !!useremail.match(/^([a-zA-Z0-9_\-\.\$]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,12})$/);
+
+      if(isValidEmail) {
+       // alert("Valid Email");
+      } else {
+       // alert("Invalid Email");
+      }
+
+      var star = "*";
+
+      //alert(star.repeat(20));
+
+      var num1 = "20";
+
+      var num2 = 20;
+
+      //alert(num1 === num2.toString());
+
+      var arr1 = ["hi", "hello", "good", "morning"];
+
+      //console.log(arr1.toString().replace(/,/g, ' '));
+
+      var users = "gopi arun bala raj ram";
+
+      var usersArr = users.split(' ', 3);
+
+      console.log(usersArr);
+
+      alert(users.toUpperCase());
+
+      var username = "      gopi krishna    ";
+
+      alert(username.trim());
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

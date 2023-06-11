@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const data2 = [{
+                "id": 1,
+                "name": "Project 1",
+                "task": [{
+                    "id": 1,
+                    "task": "Changes UI/UX",
+                    "assignedTo": "u1",
+                    "status": "pending"
+                }]
+            },
+            {
+                "id": 2,
+                "name": "Project 2",
+                "task": [{
+                    "id": 1,
+                    "task": "Configure Mail Server",
+                    "assignedTo": "u2",
+                    "status": "progress"
+                }]
+            },
+            {
+                "id": 3,
+                "name": "Project 3",
+                "task": [{
+                    "id": 1,
+                    "task": "Server Issue",
+                    "assignedTo": "u3",
+                    "status": "completed"
+                }]
+            }
+        ]
+        const data1 = [{
+            "id": 3,
+            // "name": "Project 3",
+            "task": [{
+                "id": 1,
+                "assignedTo": "jkkk",
+                "status": "uiii"
+            }]
+        }]
+        let map1 = {};
+        data2.forEach(item => map1[item.id] = item);
+        data1.forEach(item => map1[item.id] = item);
+          const result = Object.values(map1);
+        console.log(map1);
+    </script>
+</body>
+
+</html>

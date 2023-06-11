@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function doZoomIn() {
+            var img = document.getElementById("anglogo");
+            
+            var eHeight = img.style.height;
+            var eWidth = img.style.width;
+            var nHeight = parseInt(eHeight)+50+"px";
+            var nWidth = parseInt(eWidth)+50+"px";
+            
+            if(parseInt(nHeight)  < 1000){
+                img.style.height = nHeight;
+                img.style.width = nWidth;
+            }
+            else{alert("You have reached miximum size")}
+        }
+        function doZoomOut() {
+            var img = document.getElementById("anglogo");
+            
+            var eHeight = img.style.height;
+            var eWidth = img.style.width;
+
+            var nHeight = parseInt(eHeight)-50+"px";
+            var nWidth = parseInt(eWidth)-50+"px";
+            
+           if(parseInt(nWidth) > 50){
+                img.style.height = nHeight;
+                img.style.width = nWidth;
+          }
+          else{alert("You have reached minimum size")}
+        }
+        //Form Validation
+        function doFormValidation(){
+        var email = document.getElementById("email").value;
+        var phone = document.getElementById("phone").value;
+        var url = document.getElementById("url").value;
+            
+        var errEmail = document.getElementById("errEmail");
+        var errPhone = document.getElementById("errPhone");  
+        var errUrl = document.getElementById("errUrl");
+            
+        var emailPattern = /^([a-zA-Z0-9_\-\.\$]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,12})$/      
+        var numPattern = /^(0|[1-9][0-9]*)$/
+        var urlPattern = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/
+        
+            //Empty string validation
+            if(email == ""){
+                errEmail.innerHTML="Please Enter Email Id";
+                errEmail.style.display = "block"
+            }
+            
+            if(phone == ""){
+                errPhone.innerHTML="Please Enter Phone Number";
+                errPhone.style.display = "block"
+            }
+            
+            if(url == ""){
+                errUrl.innerHTML="Please Enter URL";
+                errUrl.style.display = "block"
+            }
+            
+            if(!email.match(emailPattern) && email !== ""){
+                errEmail.innerHTML="Please Enter Valid Email Id";
+                errEmail.style.display = "block"
+            }
+                        
+            if(!phone.match(numPattern) && phone !== ""){
+                errPhone.innerHTML="Please Enter  Valid Phone Number";
+                errPhone.style.display = "block"
+            }
+            
+            if(!url.match(urlPattern) && url !== ""){
+                errUrl.innerHTML="Please Enter Valid URL";
+                errUrl.style.display = "block"
+            }
+            
+        }
+        function convertCasesTrim(arg){
+            document.getElementById("trim").value =arg.trim()
+        }
+        function convertCases(arg){
+            document.getElementById("lowercase").value =arg.toLowerCase()
+        }
+        function convertCasesUpper(arg){
+            document.getElementById("uppercase").value =arg.toUpperCase()
+        }
+    </script>
+</head>
+<body>
+    <img src="png-transparent-angular-js-full-logo-tech-companies.png" id="anglogo" style="height: 300px; width: 350px;"> <br><br>
+
+    <button onclick="doZoomIn()">Zoom In</button> &nbsp;
+    <button onclick="doZoomOut()">Zoom Out</button>
+    <h1>1. Form Validation</h1>
+    Email: <input type="text" id="email"><br><span id="errEmail" style="color: red; display: none">hii</span><br>
+    Phone: <input type="text" id="phone"> (Numbers Only) <br><span id="errPhone" style="color: red; display: none">hii</span><br>
+    URL: <input type="text" id="url"> <br><span id="errUrl" style="color: red; display: none">hii</span><br>
+    <button onclick="doFormValidation()">Submit</button> <br><br>
+    <h1>2. Trim and convert cases</h1>
+    Trim: <input type="text" id="trim" onkeyup="convertCasesTrim(this.value)"> <br><br>
+    Lowercase: <input type="text" id="lowercase" onkeyup="convertCases(this.value)"> <br><br>
+    Uppercase: <input type="text" id="uppercase" onkeyup="convertCasesUpper(this.value)"> <br><br>
+</body>
+</html>

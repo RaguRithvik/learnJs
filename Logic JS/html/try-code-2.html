@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var boj = {
+            name: 'ragu'
+            , age: '25'
+        }
+        var innerobj = {
+            lang: {
+                name: 'ragu'
+                , age: '25'
+            }
+        }
+        for (let cg in innerobj) {
+            // // if ((boj[cg]).name = 'rag') 
+            // // { 
+            // //     console.log(true) 
+            // // } 
+            // else { console.log(false) } 
+            //    console.log(innerobj[cg].name)
+        }
+        //        let obj = {
+        //            '1st': {
+        //                name: 'stackoverflow'
+        //            }
+        //            , '2nd': {
+        //                name: 'stackexchange'
+        //            }
+        //        };
+        let input = {
+            "payment_booking_id": ""
+            , "booking_id": "9"
+            , "booking_seq_no": "BOOK_125-2122"
+            , "booking_date": "24/03/2022 08:43:48"
+            , "invoice_no": "1421"
+            , "invoice_date": "24/03/2022"
+            , "gst_amount": "360.00"
+            , "tds_amount": "20.00"
+            , "booking_cost": "1000.00"
+            , "total_cost": "1340.00"
+        }
+        var op = [];
+        Object.keys(input).forEach(function (key) {
+            var obj = {};
+            obj[key] = input[key];
+            op.push(obj); //push newly created object in `op`array
+        });
+        console.log(op);
+        let array = Object.entries(input).map(([k, v]) => ({ [k]: v }));
+        console.log(array);
+
+        //        
+        //        let wholeArray = Object.keys(obj).map(key => obj[key]);
+        ////        console.log(wholeArray[1].name);
+        //        console.log(wholeArray);
+    </script>
+</body>
+
+</html>

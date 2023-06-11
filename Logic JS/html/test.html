@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+var cars1 = [
+    {id: 2, make: "Honda", model: "Civic", year: 2001},
+    {id: 1, make: "Ford",  model: "F150",  year: 2002},
+    {id: 3, make: "Chevy", model: "Tahoe", year: 2003},
+];
+
+var cars2 = [
+    {id: 3, make: "Kia",    model: "Optima",  year: 2001},
+    {id: 4, make: "Nissan", model: "Sentra",  year: 1982},
+    {id: 2, make: "Toyota", model: "Corolla", year: 1980},
+];
+const cars1IDs = new Set(cars1.map(({ id }) => id));
+const combined = [...cars1, ...cars2.filter(({ id }) => !cars1IDs.has(id))];
+console.log(combined);
+</script>
+</body>
+</html>

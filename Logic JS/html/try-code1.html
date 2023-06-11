@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        const menu = [{
+            "parent-key": "0",
+            "child-key": "1",
+            "menu-name": "root",
+            "url-link": null,
+            "menu-child": [{
+                    "parent-key": "1",
+                    "child-key": "2",
+                    "menu-name": "Dashboard",
+                    "url-link": "/dashboard/",
+                    "menu-child": []
+                },
+                {
+                    "parent-key": "1",
+                    "child-key": "3",
+                    "menu-name": "Master",
+                    "url-link": null,
+                    "menu-child": [{
+                            "parent-key": "3",
+                            "child-key": "4",
+                            "menu-name": "Near Places Type",
+                            "url-link": "/dashboard/HotelSetup/NearPlaceType/",
+                            "menu-child": []
+                        },
+                        {
+                            "parent-key": "3",
+                            "child-key": "5",
+                            "menu-name": "Near Places",
+                            "url-link": "/dashboard/HotelSetup/NearPlace/",
+                            "menu-child": []
+                        },
+                        {
+                            "parent-key": "3",
+                            "child-key": "31",
+                            "menu-name": "API Configuration",
+                            "url-link": "/dashboard/ClientForm/ClientForm",
+                            "menu-child": []
+                        }
+                    ]
+                },
+            ]
+        }]
+        const url = "/dashboard/"
+        const urls = "/dashboard/HotelSetup/NearPlaceType/"
+
+        //        const getsidebar = menu.map(getmenu => (getmenu["menu-child"].map(ndata => ndata['url-link'] == url ? ndata['menu-name'] : '')))
+
+        const menus = menu.map(getmenu => (getmenu["menu-child"].map(ndata => ndata['menu-child'].map(indata => indata['url-link'] == urls ? indata['menu-name'] : ''))))
+        var op1 = menus.map((f => f.filter(v => v != "")))
+        var op = op1.map((f => f.map(v => v.filter(v => v != ""))))
+
+        for (let b in op) {
+            for (let cd in op[b]) {
+                if (op[b][cd].length > 0) {
+                    var getcon = op[b][cd][0]
+                    // console.log(getcon)
+                }
+            }
+        }
+
+        // Query String Ex
+               var query_string = "?name=mani&age=18"
+               //remove ? symbol   step 1  step 2
+               query_string = query_string.split("?"); //step 1 split string based on ?
+               query_string = query_string.join(""); // join the spleted string by "" empty value  here ? is removed
+            //    console.log(query_string)
+               //split each fields step1  step2 step3 step4
+               query_string = query_string.split("&"); // step 1 split key=value by & symbol , because & symbole is placed between each key=value pare  
+            //    console.log(query_string)
+               // by result it give array
+               var json = {};
+               
+               for (let i = 0; i < query_string.length; i++) //step 2 iterate array
+               {
+                   var a = query_string[i].split("="); // step 3 split key value by = symbol because key and value are separed by = symbol
+                             console.log(json[a[0]])
+                //    console.log(a)
+                   // by result it give  array with size 2   0th index is key 1th index is value  
+                   json[a[0]] = a[1]; //step4 form json
+               }
+            //    console.log(json)
+        // console.log(json)
+        const services = [
+            "CHA",
+            "Transportation",
+            "Warehousing"
+        ]
+        const data = ["CHA"]
+        // console.log(services.filter((element) => data.includes(element)))
+        // var arr = [1,2,3,4,5,6]
+        // var result = 6
+        // var pushValue =[]
+        // console.log(pushValue)
+        // for(i=0;i<arr.length;i++){
+        //     for(j=1;j<arr.length;j++){
+        //         if(arr[i]+arr[j] == result){
+        //             pushValue.push([arr[i],arr[j]])
+        //         }
+        //     }
+        // }
+        // var obj = {0:1,1:90}
+        // console.log(obj[1])
+    </script>
+
+</body>
+
+</html>

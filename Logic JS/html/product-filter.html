@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="text/javascript">
+        var category = [
+            {
+                "id": 152,
+                "category_name": "Nappy Care",
+                "category_slug": "baby-nappy-care",
+                "getsubcat_result": [
+                    {
+                        "subcat_id": 46,
+                        "title": "Diapers & Pants",
+                        "subcategoryslug": "baby-diapers",
+                        "getbchildcat_result": [
+                            {
+                                "id": null,
+                                "childcategoryname": null,
+                                "childcategoryslug": null
+                            }
+                        ]
+                    },
+                    {
+                        "subcat_id": 47,
+                        "title": "Cream & Powders",
+                        "subcategoryslug": "cream-powders",
+                        "getbchildcat_result": [
+                            {
+                                "id": null,
+                                "childcategoryname": null,
+                                "childcategoryslug": null
+                            }
+                        ]
+                    },
+                    {
+                        "subcat_id": 48,
+                        "title": "Nappy Cleaning",
+                        "subcategoryslug": "nappy-cleaning",
+                        "getbchildcat_result": [
+                            {
+                                "id": null,
+                                "childcategoryname": null,
+                                "childcategoryslug": null
+                            }
+                        ]
+                    },
+                ],
+
+            },
+            {
+                "id": 153,
+                "category_name": "Skin & Hair",
+                "category_slug": "skin-hair",
+                "getsubcat_result": [
+                    {
+                        "subcat_id": 52,
+                        "title": "Bath",
+                        "subcategoryslug": "bath",
+                        "getbchildcat_result": [
+                            {
+                                "id": null,
+                                "childcategoryname": null,
+                                "childcategoryslug": null
+                            }
+                        ]
+                    },
+                    {
+                        "subcat_id": 53,
+                        "title": "Outdoors",
+                        "subcategoryslug": "outdoors",
+                        "getbchildcat_result": [
+                            {
+                                "id": null,
+                                "childcategoryname": null,
+                                "childcategoryslug": null
+                            }
+                        ]
+                    },
+                    {
+                        "subcat_id": 54,
+                        "title": "Daily Care",
+                        "subcategoryslug": "daily-care",
+                        "getbchildcat_result": [
+                            {
+                                "id": null,
+                                "childcategoryname": null,
+                                "childcategoryslug": null
+                            }
+                        ]
+                    },
+                ],
+            },
+        ]
+        //setMainCategoryId
+        const getSubCategory = category.map((element) => {
+            return { ...element, getsubcat_result: element.getsubcat_result.filter((subElement) => subElement.subcat_id === Number(subcategoryid)) }
+        })
+        if (getSubCategory.length > 0) {
+            for (var i = 0; getSubCategory.length > i; i++) {
+                if (getSubCategory[i].getsubcat_result.length !== undefined) {
+                    for (var j = 0; getSubCategory[i].getsubcat_result.length > j; j++) {
+                        setCategoryId(getSubCategory[i].id);
+                    }
+                }
+            }
+        }
+        //set MainCategory id and sub category id
+        const getSubChildCategory = category.map((element) => {
+            return { ...element, getsubcat_result: element.getsubcat_result.map((childElement) => { return { ...childElement, getbchildcat_result: childElement.getbchildcat_result.filter((subElement) => subElement.id === Number(childcategoryid)) } }) }
+        })
+        if (getSubChildCategory.length > 0 && getSubChildCategory.length !== undefined) {
+            for (var l = 0; getSubChildCategory.length > l; l++) {
+                if (getSubChildCategory[l].getsubcat_result.length !== undefined) {
+                    for (var m = 0; getSubChildCategory[l].getsubcat_result.length > m; m++) {
+                        if (getSubChildCategory[l].getsubcat_result[m].getbchildcat_result.length !== undefined) {
+                            for (var k = 0; getSubChildCategory[l].getsubcat_result[m].getbchildcat_result.length > k; k++) {
+                                setCategoryId(getSubChildCategory[l].id);
+                                setSubCatId(getSubChildCategory[l].getsubcat_result[m].subcat_id);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
